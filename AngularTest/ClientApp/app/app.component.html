@@ -1,0 +1,44 @@
+﻿<h1 class="text-center">List of Games</h1>
+
+<div *ngIf="tableMode; else create">
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <td scope="col">Name</td>
+                <td scope="col">Developer</td>
+                <td scope="col">Year</td>
+                <td scope="col">Past</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let g of games">
+                <td>{{g?.name}}</td>
+                <td>{{g?.developer}}</td>
+                <td>{{g?.year}}</td>
+                <td>{{g?.yearsPast}} years</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" value="Add new" class="btn btn-default" (click)="add()" />
+</div>
+
+
+
+<ng-template #create>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="game.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Developer</label>
+        <input type="text" [(ngModel)]="game.developer" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Year</label>
+        <input type="text" [(ngModel)]="game.year" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>
